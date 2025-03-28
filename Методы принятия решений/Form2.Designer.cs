@@ -28,35 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            txtCriteria = new TextBox();
-            txtAlternatives = new TextBox();
             btnGenerateTable = new Button();
             dataGridView = new DataGridView();
-            label1 = new Label();
-            label2 = new Label();
             dataGridViewComparison = new DataGridView();
             label3 = new Label();
             label4 = new Label();
             dataGridView1 = new DataGridView();
             label5 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewComparison).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
-            // 
-            // txtCriteria
-            // 
-            txtCriteria.Location = new Point(160, 91);
-            txtCriteria.Name = "txtCriteria";
-            txtCriteria.Size = new Size(125, 27);
-            txtCriteria.TabIndex = 0;
-            // 
-            // txtAlternatives
-            // 
-            txtAlternatives.Location = new Point(160, 157);
-            txtAlternatives.Name = "txtAlternatives";
-            txtAlternatives.Size = new Size(125, 27);
-            txtAlternatives.TabIndex = 1;
             // 
             // btnGenerateTable
             // 
@@ -77,24 +60,6 @@
             dataGridView.Size = new Size(384, 231);
             dataGridView.TabIndex = 3;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 94);
-            label1.Name = "label1";
-            label1.Size = new Size(135, 20);
-            label1.TabIndex = 4;
-            label1.Text = "кол-во Критериев";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(0, 160);
-            label2.Name = "label2";
-            label2.Size = new Size(149, 20);
-            label2.TabIndex = 5;
-            label2.Text = "кол-во Альтернатив";
-            // 
             // dataGridViewComparison
             // 
             dataGridViewComparison.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -103,7 +68,6 @@
             dataGridViewComparison.RowHeadersWidth = 51;
             dataGridViewComparison.Size = new Size(393, 243);
             dataGridViewComparison.TabIndex = 6;
-            
             // 
             // label3
             // 
@@ -113,7 +77,6 @@
             label3.Size = new Size(321, 40);
             label3.TabIndex = 7;
             label3.Text = "Значение критериев для альтернатив в виде\r\n              оценки по шкале Саате\r\n";
-            
             // 
             // label4
             // 
@@ -142,22 +105,29 @@
             label5.TabIndex = 10;
             label5.Text = "Значение критериев для альтернатив в виде \r\n                    словесного описания";
             // 
+            // button1
+            // 
+            button1.Location = new Point(76, 217);
+            button1.Name = "button1";
+            button1.Size = new Size(80, 61);
+            button1.TabIndex = 11;
+            button1.Text = " Ввод\r\nданных";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1254, 631);
+            Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(dataGridView1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(dataGridViewComparison);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(dataGridView);
             Controls.Add(btnGenerateTable);
-            Controls.Add(txtAlternatives);
-            Controls.Add(txtCriteria);
             Name = "Form2";
             Text = "Form2";
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
@@ -168,17 +138,13 @@
         }
 
         #endregion
-
-        private TextBox txtCriteria;
-        private TextBox txtAlternatives;
         private Button btnGenerateTable;
         private DataGridView dataGridView;
-        private Label label1;
-        private Label label2;
         private DataGridView dataGridViewComparison;
         private Label label3;
         private Label label4;
         private DataGridView dataGridView1;
         private Label label5;
+        private Button button1;
     }
 }

@@ -13,25 +13,31 @@ namespace Методы_принятия_решений
 {
     public partial class Form2 : Form
     {
+        private int criteriaCount;
+        private int alternativesCount;
+
         public Form2()
         {
             InitializeComponent();
         }
+        public void button1_Click(object sender, EventArgs e)
+        {
+            using InputForm inputForm = new InputForm();
+            if (inputForm.ShowDialog() == DialogResult.OK)
+            {
+                criteriaCount = inputForm.CriteriaCount;
+                alternativesCount = inputForm.AlternativesCount;
+
+                MessageBox.Show($"Введено {criteriaCount} критериев и {alternativesCount} альтернатив", "Успех");
+            }
+        }
 
         private void btnGenerateTable_Click_1(object sender, EventArgs e)
-        {
-            int criteriaCount, alternativesCount;
-
-            // Проверяем ввод
-            if (!int.TryParse(txtCriteria.Text, out criteriaCount) || criteriaCount < 2 || criteriaCount > 10)
+        {                  
+                    
+            if (criteriaCount == 0 || alternativesCount == 0)
             {
-                MessageBox.Show("Введите количество критериев от 2 до 10.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!int.TryParse(txtAlternatives.Text, out alternativesCount) || alternativesCount < 2 || alternativesCount > 10)
-            {
-                MessageBox.Show("Введите количество альтернатив от 2 до 10.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Сначала введите данные!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -63,7 +69,7 @@ namespace Методы_принятия_решений
             // Передаем критерии в GenerateComparisonMatrix
             GenerateComparisonMatrix(tableData);
         }
-
+                
 
         private void GenerateComparisonMatrix(string[,] tableData)
         {
@@ -112,15 +118,22 @@ namespace Методы_принятия_решений
                 // Проверяем, что редактируется верхняя часть матрицы
                 if (rowIdx >= 0 && colIdx > 0 && rowIdx != colIdx)
                 {
-                    if (double.TryParse(dataGridViewComparison.Rows[rowIdx].Cells[colIdx].Value?.ToString(), out double value) && value > 0)
+                    string? inputValue = dataGridViewComparison.Rows[rowIdx].Cells[colIdx].Value?.ToString();
+
+                    if (double.TryParse(inputValue, out double value) && value > 0)
                     {
-                        //НЕ ЗАБЫВАЕМ ЧТО ЗДЕСЬ СОЗДАЕМ СТРОКУ, А ЧИСЛОВОЕ ЗНАЧЕНИЕ !!!!
+                        // Если введено обычное число, записываем обратное значение в зеркальную ячейку
                         dataGridViewComparison.Rows[colIdx - 1].Cells[rowIdx + 1].Value = $"1/{value}";
+                    }
+                    else if (inputValue?.StartsWith("1/") == true && double.TryParse(inputValue.Substring(2), out double fractionValue) && fractionValue > 0)
+                    {
+                        // Если введена дробь в формате "1/n", записываем её обратное значение (n)
+                        dataGridViewComparison.Rows[colIdx - 1].Cells[rowIdx + 1].Value = fractionValue.ToString();
                     }
                     else
                     {
                         dataGridViewComparison.Rows[rowIdx].Cells[colIdx].Value = "";
-                        MessageBox.Show("Введите корректное положительное число!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Введите корректное положительное число или дробь в формате 1/n!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             };
@@ -143,7 +156,7 @@ namespace Методы_принятия_решений
                 row[0] = tableData[i, 0]; // Название критерия
                 grid.Rows.Add(row);
             }
-        }  
-               
+        }
+                
     }
 }
