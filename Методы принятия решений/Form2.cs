@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Методы_принятия_решений
 {
     public partial class Form2 : Form
@@ -16,9 +17,14 @@ namespace Методы_принятия_решений
         private int criteriaCount;
         private int alternativesCount;
 
+
+
         public Form2()
         {
             InitializeComponent();
+            Utils.Utils.EnableResizing(dataGridView);
+            Utils.Utils.EnableResizing(dataGridView1);
+            Utils.Utils.EnableResizing(dataGridViewComparison);           
         }
         public void button1_Click(object sender, EventArgs e)
         {
@@ -33,8 +39,8 @@ namespace Методы_принятия_решений
         }
 
         private void btnGenerateTable_Click_1(object sender, EventArgs e)
-        {                  
-                    
+        {
+
             if (criteriaCount == 0 || alternativesCount == 0)
             {
                 MessageBox.Show("Сначала введите данные!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -69,7 +75,8 @@ namespace Методы_принятия_решений
             // Передаем критерии в GenerateComparisonMatrix
             GenerateComparisonMatrix(tableData);
         }
-                
+
+                     
 
         private void GenerateComparisonMatrix(string[,] tableData)
         {

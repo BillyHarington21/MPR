@@ -1,4 +1,5 @@
-﻿namespace Методы_принятия_решений
+﻿using Методы_принятия_решений.Utils;
+namespace Методы_принятия_решений
 {
     partial class Form2 : Form
     {
@@ -59,6 +60,7 @@
             dataGridView.RowHeadersWidth = 51;
             dataGridView.Size = new Size(384, 231);
             dataGridView.TabIndex = 3;
+            
             // 
             // dataGridViewComparison
             // 
@@ -68,6 +70,7 @@
             dataGridViewComparison.RowHeadersWidth = 51;
             dataGridViewComparison.Size = new Size(393, 243);
             dataGridViewComparison.TabIndex = 6;
+            
             // 
             // label3
             // 
@@ -95,6 +98,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(389, 231);
             dataGridView1.TabIndex = 9;
+            
             // 
             // label5
             // 
